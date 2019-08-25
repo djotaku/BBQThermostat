@@ -79,12 +79,15 @@ void loop() {
   Serial.print(THERM.readTemperature());
   Serial.println(" °C");
   Serial.println();
-
   //mqtt
+  int smokertempnum = THERM.readTemperature();
+  char cstr[100];
+  itoa(smokertempnum,cstr,10);
   if (!client.connected()) {
     reconnect();
   }
-  client.publish("outTopic","in the loop!");
+  client.publish("smoker/temp",cstr);
+  client.publish("smoker/WiFi/SSID",WiFi.SSID());
   
   delay(10000);
 
