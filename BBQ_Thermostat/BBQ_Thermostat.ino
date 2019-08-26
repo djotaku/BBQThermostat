@@ -39,7 +39,7 @@ PubSubClient client(wifiClient); //for Pubsubclient
 void setup() {
   // Serial init code. This is for debugging and should be commented out when it's running at the smoker if debugging is not taking place
   Serial.begin(9600);
-  while (!Serial);
+  //while (!Serial); //have to comment out or it won't work unless serial connection
 
   // make sure THERM shield will initialize
   if (!THERM.begin()) {
