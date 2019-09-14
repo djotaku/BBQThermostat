@@ -80,7 +80,7 @@ void loop() {
   Serial.println(" °C");
   Serial.println();
   //mqtt
-  int smokertempnum = THERM.readTemperature();
+  int smokertempnum = THERM.readTemperature()+3;
   char cstr[100];
   itoa(smokertempnum,cstr,10);
   if (!client.connected()) {
