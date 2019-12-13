@@ -34,6 +34,7 @@ int status = WL_IDLE_STATUS;     // the Wifi radio's status
 IPAddress server(192,168,1,14); //for Pubsubclient
 WiFiClient wifiClient; //for Pubsubclient
 PubSubClient client(wifiClient); //for Pubsubclient
+int REPORTING_DELAY = 5000; // in milliseconds
 
 
 void setup() {
@@ -86,10 +87,16 @@ void loop() {
   if (!client.connected()) {
     reconnect();
   }
-  client.publish("smoker/temp",cstr);
-  client.publish("smoker/WiFi/SSID",WiFi.SSID());
-  
-  delay(10000);
+  if (smokertempnum > 500)
+  {
+    delay(REPORTING_DELAY); // this is to not report the error temp of 1073741824 which is pointless and will cause issues.
+  }
+  else
+  {
+    client.publish("smoker/temp",cstr);
+    client.publish("smoker/WiFi/SSID",WiFi.SSID());
+  }
+  delay(REPORTING_DELAY);
 
 }
 
