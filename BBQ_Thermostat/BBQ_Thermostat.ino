@@ -89,7 +89,7 @@ void loop() {
   }
   if (smokertempnum > 500)
   {
-    delay(REPORTING_DELAY); // this is to not report the error temp of 1073741824 which is pointless and will cause issues.
+    Serial.println("Bogus number"); // this is to not report the error temp of 1073741824 which is pointless and will cause issues.
   }
   else
   {
