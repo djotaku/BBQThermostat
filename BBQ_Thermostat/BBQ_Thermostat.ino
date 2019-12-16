@@ -34,7 +34,7 @@ int status = WL_IDLE_STATUS;     // the Wifi radio's status
 IPAddress server(192,168,1,14); //for Pubsubclient
 WiFiClient wifiClient; //for Pubsubclient
 PubSubClient client(wifiClient); //for Pubsubclient
-int REPORTING_DELAY = 60000; // in milliseconds
+int REPORTING_DELAY = 10000; // in milliseconds
 
 
 void setup() {
