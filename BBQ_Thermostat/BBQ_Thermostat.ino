@@ -49,15 +49,7 @@ void setup() {
   }
 
   //attempt to connect to Wifi Network
-  while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to WPA SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network:
-    status = WiFi.begin(ssid, pass);
-
-    // wait 10 seconds for connection:
-    delay(10000);
-  }
+  WifiConnect();
 
   // you're connected now, so print out the data: - this is also for debugging and should be commented out when running at the smoker if not debugging
   Serial.print("You're connected to the network");
@@ -71,6 +63,7 @@ void setup() {
 
 void loop() {
   // debugging - wifi check
+  WifiConnect();
   printCurrentNet();
   // debugging - therm check
   Serial.print("Reference temperature ");
@@ -101,6 +94,20 @@ void loop() {
 }
 
 ///////////////////// WIFI Functions /////////////////////
+
+void WifiConnect()
+{
+  //attempt to connect to Wifi Network
+  while (status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network:
+    status = WiFi.begin(ssid, pass);
+
+    // wait 10 seconds for connection:
+    delay(10000);
+    }
+}
 
 // These are all for debugging and should be commented out when running at the smoker if not debugging
 void printWifiData() {
